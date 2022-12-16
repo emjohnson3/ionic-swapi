@@ -1,28 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { SwapiService } from '../swapi.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
-  constructor(private swapiSvc: SwapiService) {}
+  constructor() {}
 
-  planets: string[] = [];
-
-  ngOnInit(): void {
-    this.swapiSvc.loadPlanets().subscribe({
-      next: data => {
-        this.planets = [
-          ...this.planets
-          , ...data.results.map(x => x.name)
-        ].sort();
-      }
-      , error: err => {
-        console.error(err);
-      }
-    });
-  }
 }
